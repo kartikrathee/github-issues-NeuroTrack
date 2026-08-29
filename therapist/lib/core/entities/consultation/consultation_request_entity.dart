@@ -1,72 +1,72 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:therapist/model/consultation/consultation_request_model.dart';
 
 part 'consultation_request_entity.mapper.dart';
 
 @MappableClass()
 class ConsultationRequestEntity with ConsultationRequestEntityMappable {
-  final String id;
-  final String patientId;
-  final String patientName;
-  final String? patientProfileImageUrl;
-  final String therapistId;
-  final DateTime requestDate;
-  final List<DateTime> proposedTimes;
-  final String assessmentId;
-  final String assessmentType;
-  final String assessmentSummary;
-  final String status;
-  final DateTime? scheduledTime;
-  final String? notes;
-  final DateTime? lastUpdated;
 
-  const ConsultationRequestEntity({
+  @MappableField(key: 'id')
+  final String id;
+
+  @MappableField(key: 'patient_name')
+  final String patientName;
+
+  @MappableField(key: 'timestamp')
+  final String? timestamp;
+
+  @MappableField(key: 'therapist_id')
+  final String? therapistId;
+
+  @MappableField(key: 'patient_id')
+  final String? patientId;
+
+  @MappableField(key: 'is_consultation')
+  final bool? isConsultation;
+
+  @MappableField(key: 'mode')
+  final int? mode;
+
+  @MappableField(key: 'duration')
+  final int? duration;
+
+  @MappableField(key: 'name')
+  final String? name;
+
+  @MappableField(key: 'status')
+  final String? status;
+
+  @MappableField(key: 'declined_reason')
+  final String? declinedReason;
+
+  ConsultationRequestEntity({ 
     required this.id,
-    required this.patientId,
     required this.patientName,
-    this.patientProfileImageUrl,
-    required this.therapistId,
-    required this.requestDate,
-    required this.proposedTimes,
-    required this.assessmentId,
-    required this.assessmentType,
-    required this.assessmentSummary,
-    required this.status,
-    this.scheduledTime,
-    this.notes,
-    this.lastUpdated,
+    this.timestamp,
+    this.therapistId,
+    this.patientId,
+    this.isConsultation,
+    this.mode,
+    this.duration,
+    this.name,
+    this.status,
+    this.declinedReason,
   });
 
-  ConsultationRequestEntity $copyWith({
-    String? id,
-    String? patientId,
-    String? patientName,
-    String? patientProfileImageUrl,
-    String? therapistId,
-    DateTime? requestDate,
-    List<DateTime>? proposedTimes,
-    String? assessmentId,
-    String? assessmentType,
-    String? assessmentSummary,
-    String? status,
-    DateTime? scheduledTime,
-    String? notes,
-    DateTime? lastUpdated,
-  }) {
-    return ConsultationRequestEntity(
-      id: id ?? this.id,
-      patientId: patientId ?? this.patientId,
-      patientName: patientName ?? this.patientName,
-      patientProfileImageUrl: patientProfileImageUrl ?? this.patientProfileImageUrl,
-      therapistId: therapistId ?? this.therapistId,
-      requestDate: requestDate ?? this.requestDate,
-      proposedTimes: proposedTimes ?? this.proposedTimes,
-      assessmentId: assessmentId ?? this.assessmentId,
-      assessmentType: assessmentType ?? this.assessmentType,
-      assessmentSummary: assessmentSummary ?? this.assessmentSummary,
-      status: status ?? this.status,
-      scheduledTime: scheduledTime ?? this.scheduledTime,
-      notes: notes ?? this.notes,
-      lastUpdated: lastUpdated ?? this.lastUpdated,
+  ConsultationRequestModel toModel() {
+    return ConsultationRequestModel(
+      id: id,
+      patientName: patientName,
+      timestamp: timestamp,
+      therapistId: therapistId,
+      patientId: patientId,
+      isConsultation: isConsultation,
+      mode: mode,
+      duration: duration,
+      name: name,
+      status: status,
+      declinedReason: declinedReason,
     );
   }
+
 }
